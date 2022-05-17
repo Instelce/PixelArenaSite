@@ -1,2 +1,2 @@
 # PixelArenaSite
-Site and APIof the Pixel Arena Game
+Site and API of the Pixel Arena Game
