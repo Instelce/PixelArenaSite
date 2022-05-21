@@ -33,6 +33,15 @@ class Item(models.Model):
         return f'{self.name} | {self.category}'
 
 
+class Stat(models.Model):
+    name = models.CharField(max_length=80)
+    value = models.IntegerField()
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return f'{self.name} | {self.item}'
+
+
 class Graphic(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     image = models.ImageField(upload_to=get_upload_path)

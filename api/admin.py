@@ -7,6 +7,11 @@ class GraphicInLine(admin.TabularInline):
     extra = 5
 
 
+class StatInLine(admin.TabularInline):
+    model = Stat
+    extra = 2
+
+
 class ItemAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['name']}),
@@ -14,10 +19,11 @@ class ItemAdmin(admin.ModelAdmin):
         (None, {'fields': ['category']}),
     ]
 
-    inlines = [GraphicInLine]
+    inlines = [StatInLine, GraphicInLine]
 
 
 admin.site.register(Player)
 admin.site.register(Category)
 admin.site.register(Item, ItemAdmin)
+admin.site.register(Stat)
 admin.site.register(Graphic)

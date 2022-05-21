@@ -1,6 +1,6 @@
 from dataclasses import field
 from rest_framework import serializers
-from .models import Graphic, Player, Category, Item
+from .models import Graphic, Player, Category, Item, Stat
 from django.contrib.auth.models import User
 
 
@@ -33,6 +33,12 @@ class ItemSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Item
         fields = ['name', 'price', 'category']
+
+
+class StatSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Stat
+        fields = ['name', 'value', 'item']
 
 
 class GraphicSerializer(serializers.HyperlinkedModelSerializer):
