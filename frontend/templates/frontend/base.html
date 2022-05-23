@@ -14,17 +14,17 @@
 
     {# CSS Link #}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css">
-    <link rel="stylesheet" href="{% static 'password/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'frontend/css/main.css' %}">
 
     {% if title %}
-        <title>{{ title }} Pixel Arena</title>
+        <title>{{ title }} | Pixel Arena</title>
     {% else %}
         <title>Pixel Arena</title>
     {% endif %}
 </head>
 <body>
     <nav class="navbar">
-        <a href="#" class="navbar__brand">Pixel Arena</a>
+        <a href="{% url 'home' %}" class="navbar__brand">Pixel Arena</a>
 
         <ul class="navbar__menu">
             <li>
@@ -34,10 +34,10 @@
                 <a href="#" class="navbar__link">Dev Log</a>
             </li>
             <li>
-                <a href="#" class="navbar__link">Login</a>
+                <a href="{% url 'login' %}" class="navbar__link">Login</a>
             </li>
             <li>
-                <a href="#" class="small__button">Sign Up</a>
+                <a href="{% url 'register' %}" class="small__button">Sign Up</a>
             </li>
         </ul>
     </nav>

@@ -1,0 +1,36 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block content %}
+    <header>
+        <div class="container centered">
+            <form action="{% url 'home' %}" method="post">
+                {% csrf_token %}
+
+                <h1 class="form__title">
+                    <small>Form</small>
+                    <span>Sign Up</span>
+                </h1>
+                <div class="form__group">
+                    <label for="username">Username</label>  
+                    <input type="text" id="username" name="username">
+                </div>
+                <div class="form__group">
+                    <label for="email">Email</label>  
+                    <input type="email" id="email" name="email">
+                </div>
+                <div class="form__group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password">
+                </div>
+                <div class="form__group">
+                    <label for="password_confirm">Comfirm Password</label>
+                    <input type="password" id="password_confirm" name="password_confirm">
+                </div>
+                <div class="form__group">
+                    <input type="submit" value="Create account" class="large__button">
+                </div>
+            </form>
+        </div>
+    </header>
+{% endblock content %}

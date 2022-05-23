@@ -1,0 +1,35 @@
+.navbar {
+    width: 100%;
+    position: absolute;
+    padding: 1.5rem var(--padding--vertical);
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .navbar__brand {
+        font-size: 1.5rem;
+        transition: text-shadow 0.3s;
+        
+        &:hover {
+            text-shadow: 0px 0px 20px $color-white-transparent;
+        }
+    }
+
+    .navbar__menu {
+        display: flex;
+    }
+
+    .navbar__link {
+        padding: 0.5rem 2rem;
+        color: $color-white-transparent;
+
+        transition: color 0.3s, text-shadow 0.3s;
+
+        &:hover {
+            text-shadow: 0px 0px 20px $color-white-transparent;
+            color: $color-white;
+        }
+    }
+}

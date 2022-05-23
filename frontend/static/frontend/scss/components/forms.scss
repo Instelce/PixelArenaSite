@@ -1,0 +1,69 @@
+form {
+    display: flex;
+    flex-direction: column;
+
+    .form_title {
+        width: 100%;
+    }
+
+    .form__group {
+        width: 100%;
+        margin-bottom: 1rem;
+        position: relative;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        label {
+            margin-bottom: 0.4rem;
+        }
+
+        // Seprarate inputs and submit button
+        &:last-child {
+            padding-top: 1rem;
+            margin-bottom: 0rem;
+
+            &::before {
+                content: "";
+                width: 80%;
+                height: 2px;
+                position: absolute;
+                top: 0;
+
+                align-self: center;
+                background: $color-white;
+            }
+        }
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        text-align: center;
+        padding: 1rem 4rem;
+
+        border: 4px solid $color-white-transparent;
+        background: transparent;
+
+        font-family: Gamer;
+        color: $color-white;
+        font-size: 20px;
+        letter-spacing: 1px;
+
+        transition: outline 0.2s, background 0.3s;
+
+        &:hover {
+            background: $gradient-white-transparent;
+        }
+
+        &:focus {
+            outline: 4px solid $color-white;
+        }
+    }
+
+    input[type="submit"] {
+        width: 100%;
+    }
+}

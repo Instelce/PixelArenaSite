@@ -1,5 +1,16 @@
 {% extends 'frontend/base.html' %}
+{% load static %}
 
 {% block content %}
-    <h1>Home</h1>
+    <header>
+        {% comment %} <img src="{% static 'frontend/images/background.png' %}"> {% endcomment %}
+
+        <div class="container centered">
+            <h1>
+                <small>Welcome to</small>
+                <span>Pixel Arena</span>
+            </h1>
+            <a href="#" class="small__button">Play Now</a>
+        </div>
+    </header>
 {% endblock content %}
