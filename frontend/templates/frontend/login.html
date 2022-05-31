@@ -27,7 +27,7 @@
     </header>
 {% endblock content %}
 
-{% block script %}
+{% comment %} {% block script %}
     <script>
         async function postData() {
             const loginUrl = "127.0.0.1:8000/api/login"
@@ -58,4 +58,4 @@
             return response.json(); // parses JSON response into native JavaScript objects
         }
     </script>
-{% endblock script %}
+{% endblock script %} {% endcomment %}
