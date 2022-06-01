@@ -4,7 +4,7 @@
 {% block content %}
     <header>
         <div class="container centered">
-            <form id="login_form" action="{% url 'home' %}" method="get">
+            <form id="login_form" method="get">
                 {% csrf_token %}
 
                 <h1 class="form__title">
@@ -13,49 +13,21 @@
                 </h1>
                 <div class="form__group">
                     <label for="username">Username</label>  
-                    <input type="text" id="username" name="username">
+                    {{ form.username }}
+                    {{ form.username.errors }}
                 </div>
                 <div class="form__group">
                     <label for="password">Password</label>  
-                    <input type="password" id="password" name="password">
+                    {{ form.password }}
+                    {{ form.password.errors }}
                 </div>
                 <div class="form__group">
-                    <input type="submit" value="Login" class="large__button" onclick="postData()">
+                    <input type="submit" value="Login" class="large__button">
                 </div>
+                <fieldset class="form__footer">
+                    <small>Doesn't have an account ? <a href="{% url 'register' %}" class="link">Sign Up</a></small>
+                </fieldset>
             </form>
         </div>
     </header>
 {% endblock content %}
-
-{% block script %}
-    <script>
-        async function postData() {
-            const loginUrl = "127.0.0.1:8000/api/login"
-            const username = document.getElementById("username").value
-            const password = document.getElementById("password").value
-
-            let data = {
-                username: username,
-                password: password
-            }
-
-            console.log(data)
-
-            // Default options are marked with *
-            const response = await fetch(loginUrl, {
-              method: 'POST', // *GET, POST, PUT, DELETE, etc.
-              mode: 'cors', // no-cors, *cors, same-origin
-              cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-              credentials: 'same-origin', // include, *same-origin, omit
-              headers: {
-                'Content-Type': 'application/json',
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              redirect: 'follow', // manual, *follow, error
-              referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-              body: JSON.stringify(data) // body data type must match "Content-Type" header
-            });
-            return response.json(); // parses JSON response into native JavaScript objects
-        }
-    </script>
-{% endblock script %}

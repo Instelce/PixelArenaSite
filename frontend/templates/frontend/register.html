@@ -4,7 +4,7 @@
 {% block content %}
     <header>
         <div class="container centered">
-            <form action="{% url 'home' %}" method="post">
+            <form method="POST">
                 {% csrf_token %}
 
                 <h1 class="form__title">
@@ -13,23 +13,28 @@
                 </h1>
                 <div class="form__group">
                     <label for="username">Username</label>  
-                    <input type="text" id="username" name="username">
+                    {{ form.username }}
+                    {{ form.username.errors }}
                 </div>
                 <div class="form__group">
                     <label for="email">Email</label>  
-                    <input type="email" id="email" name="email">
+                    {{ form.email }}
                 </div>
                 <div class="form__group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password">
+                    {{ form.password1 }}
                 </div>
                 <div class="form__group">
                     <label for="password_confirm">Comfirm Password</label>
-                    <input type="password" id="password_confirm" name="password_confirm">
+                    {{ form.password2 }}
+                    {{ form.password2.errors }}
                 </div>
                 <div class="form__group">
                     <input type="submit" value="Create account" class="large__button">
                 </div>
+                <fieldset class="form__footer">
+                    <small>Already have an account ? <a href="{% url 'login' %}" class="link">Login</a></small>
+                </fieldset>
             </form>
         </div>
     </header>
