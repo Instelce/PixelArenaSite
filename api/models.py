@@ -7,7 +7,6 @@ from api.misc import get_upload_path
 class Player(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    access_token = models.CharField(max_length=100, null=True)
     coins = models.IntegerField(default=100)
 
     def __str__(self):
@@ -24,6 +23,16 @@ class Category(models.Model):
         return self.name
 
 
+class PlayerItem(models.Model):
+    name = models.CharField(max_length=60)
+    price = models.IntegerField()
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.name} | {self.category} | {self.player}'
+        
+
 class Item(models.Model):
     name = models.CharField(max_length=60)
     price = models.IntegerField()
@@ -33,7 +42,7 @@ class Item(models.Model):
         return f'{self.name} | {self.category}'
 
 
-class Stat(models.Model):
+class ItemStat(models.Model):
     name = models.CharField(max_length=80)
     value = models.IntegerField()
     item = models.ForeignKey(Item, on_delete=models.CASCADE)

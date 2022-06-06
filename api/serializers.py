@@ -1,17 +1,18 @@
 from dataclasses import field
+from http import server
+from wsgiref.simple_server import server_version
 from rest_framework import serializers
-from .models import Graphic, Player, Category, Item, Stat
+from .models import *
 from django.contrib.auth.models import User
 
 
 class PlayerSerializer(serializers.ModelSerializer):
     username = serializers.SerializerMethodField('get_username')
     email = serializers.SerializerMethodField('get_email')
-    password = serializers.SerializerMethodField('get_password')
 
     class Meta:
         model = Player
-        fields = ['url', 'username', 'email', 'password', 'access_token', 'coins']
+        fields = ['url', 'username', 'email', 'coins']
 
     def get_username(self, obj):
         return obj.user.username
@@ -19,8 +20,11 @@ class PlayerSerializer(serializers.ModelSerializer):
     def get_email(self, obj):
         return obj.user.email
 
-    def get_password(self, obj):
-        return obj.user.password
+
+class PlayerItemSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = PlayerItem
+        fields = ['name', 'price', 'category', 'player']
 
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
@@ -35,9 +39,9 @@ class ItemSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['name', 'price', 'category']
 
 
-class StatSerializer(serializers.HyperlinkedModelSerializer):
+class ItemStatSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Stat
+        model = ItemStat
         fields = ['name', 'value', 'item']
 
 

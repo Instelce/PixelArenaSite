@@ -7,10 +7,24 @@ class GraphicInLine(admin.TabularInline):
     extra = 5
 
 
-class StatInLine(admin.TabularInline):
-    model = Stat
+class ItemStatInLine(admin.TabularInline):
+    model = ItemStat
     extra = 2
 
+
+class PlayerItemInLine(admin.TabularInline):
+    model = PlayerItem
+    extra = 0
+
+
+class PlayerAdmin(admin.ModelAdmin):
+    fieldsets = (
+        (None, {"fields": ['user']}),
+        (None, {"fields": ['coins']}),
+    )
+
+    inlines = [PlayerItemInLine]
+    
 
 class ItemAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -19,11 +33,15 @@ class ItemAdmin(admin.ModelAdmin):
         (None, {'fields': ['category']}),
     ]
 
-    inlines = [StatInLine, GraphicInLine]
+    inlines = [ItemStatInLine, GraphicInLine]
 
 
-admin.site.register(Player)
+admin.site.register(Player, PlayerAdmin)
 admin.site.register(Category)
+# Items
 admin.site.register(Item, ItemAdmin)
-admin.site.register(Stat)
+admin.site.register(PlayerItem)
+# Items Stats
+admin.site.register(ItemStat)
+
 admin.site.register(Graphic)
